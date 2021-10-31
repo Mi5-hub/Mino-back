@@ -101,9 +101,9 @@ module.exports = {
             res.status(200).json({
               error:false,
               users:[{
-                firstname:data.firstname,
-                sexe:data.sexe,
-                email:data.email,
+                firstname:res.data.firstname,
+                sexe:res.data.sexe,
+                email:res.data.email,
               }]
             })
         });
