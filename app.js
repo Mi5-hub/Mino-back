@@ -15,10 +15,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// app.get('/', verifyAccessToken, async (req, res, next) => {
-//   res.send('Hello from express.')
-// });
-app.use(express.static(__dirname + '/assets'));
+
 
 
 app.get('/',function(req,res){
