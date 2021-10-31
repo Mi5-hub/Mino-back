@@ -26,7 +26,7 @@ app.get('/',function(req,res){
 
 });
 
-app.use('/auth', AuthRoute)
+app.use('/users', AuthRoute)
 
 app.use(async (req, res, next) => {
   next(createError.NotFound())
