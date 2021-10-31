@@ -18,7 +18,7 @@ const UserSchema = new Schema({
         required: true,
         unique:true
     },
-    datenassaince: {
+    datenaissance: {
         type: String,
         required:false,
       
