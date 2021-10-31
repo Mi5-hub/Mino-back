@@ -98,14 +98,7 @@ module.exports = {
     try{Date.now()
         await User.find({}, (err, data)=>{
             if(err) res.status(400).json("Erreur de chargement");
-            res.status(200).json({
-              error:false,
-              users:[{
-                firstname:res.data.firstname,
-                sexe:res.data.sexe,
-                email:res.data.email,
-              }]
-            })
+            res.status(200).json(data)
         });
     }catch(err){
         res.send({status: 500, message: "Data vide"})
