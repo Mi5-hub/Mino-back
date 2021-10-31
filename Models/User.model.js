@@ -21,7 +21,7 @@ const UserSchema = new Schema({
     datenassaince: {
         type: String,
         required:false,
-        unique:true
+      
     },
     password:{
         type:String,
