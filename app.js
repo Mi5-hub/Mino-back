@@ -6,7 +6,6 @@ require('./helpers/init_mongodb')
 const { verifyAccessToken } = require('./helpers/jwt_helper')
 require('./helpers/init_redis')
 
-app.use(express.static(__dirname + '/assets'));
 
 
 const AuthRoute = require('./Routes/Auth.route')
@@ -19,6 +18,8 @@ app.use(express.urlencoded({ extended: true }))
 // app.get('/', verifyAccessToken, async (req, res, next) => {
 //   res.send('Hello from express.')
 // });
+app.use(express.static(__dirname + '/assets'));
+
 
 app.get('/',function(req,res){
   res.sendFile(__dirname + '/index.html');
