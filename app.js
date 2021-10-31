@@ -6,7 +6,7 @@ require('./helpers/init_mongodb')
 const { verifyAccessToken } = require('./helpers/jwt_helper')
 require('./helpers/init_redis')
 
-
+app.use(express.static(__dirname + '/assets'));
 
 
 const AuthRoute = require('./Routes/Auth.route')
