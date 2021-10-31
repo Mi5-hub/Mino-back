@@ -17,14 +17,22 @@ module.exports = {
 
       const doesExist = await User.findOne({ email: result.email })
       if (doesExist)
-        throw createError.Conflict(`${result.email} is already been registered`)
+        throw createError.Conflict(`L'email ${result.email} est déjà utilisé`)
 
       const user = new User(result)
       const savedUser = await user.save()
       const accessToken = await signAccessToken(savedUser.id)
       const refreshToken = await signRefreshToken(savedUser.id)
 
-      res.send({ accessToken, refreshToken })
+      res.send({ 
+        error:false,
+        message: "L'utilisateur a bien été créé avec succès",
+        tokens:{
+          token:accessToken,
+          refreshtoken:refreshToken,
+          createdAt: Date.now()
+        }
+       })
     } catch (error) {
       if (error.isJoi === true) error.status = 422
       next(error)

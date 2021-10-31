@@ -1,5 +1,5 @@
 {
-  "name": "Auth_tutorial",
+  "name": "test-back-sayna",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mino Randy",
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
