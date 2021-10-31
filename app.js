@@ -5,6 +5,8 @@ require('dotenv').config()
 require('./helpers/init_mongodb')
 const { verifyAccessToken } = require('./helpers/jwt_helper')
 require('./helpers/init_redis')
+require('./views/assets/')
+
 
 
 const AuthRoute = require('./Routes/Auth.route')
@@ -19,7 +21,7 @@ app.use(express.urlencoded({ extended: true }))
 // });
 
 app.get('/',function(req,res){
-  res.sendFile('./index.html');
+  res.sendFile(__dirname + './views/assets/index.html');
 
 });
 
