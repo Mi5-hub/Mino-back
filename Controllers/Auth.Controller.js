@@ -93,62 +93,115 @@ module.exports = {
       next(error)
     }
   },
-}
 
-
-
-exports.getAllUsers = async (req, res) => {
-  try{Date.now()
-      await User.find({}, (err, data)=>{
-          if(err) res.status(400).json("Erreur de chargement");
-          res.status(200).json(data)
-      });
-  }catch(err){
-      res.send({status: 500, message: "Data vide"})
-  }
-}
-
-exports.getOneUser = async (req, res) => {
-  try{
-
-      const validation = jwt.verify(req.headers.token, process.env.jWT_KEY);
-      !validation && res.status(401).json({
-          error:true,
-          message:"Le token envoyé n'est pas valide"
-      })
-
-      const user = await User.findById(req.params.id);
-      const { password, ...others} = user._doc;
-      // res.status(200).json(others);
-
-      res.status(200).json({
-          error: false,
-          user:others
-      })
-  }catch(err){
-      res.send({status: 500, message: "Cette user n'existe pas"})
-  }
-}
-
-exports.UpdateUser = async (req, res) => {
-  if(req.body.userId === req.params.id){
-      if(req.body.password){
-          const salt = await bcrypt.genSalt(10);
-          req.body.password = await bcrypt.hash(req.body.password, salt);
-      }
-      try{
-          const updateUser = await User.findByIdAndUpdate(req.params.id, {
-              $set: req.body,
-          }, {new: true})
-          res.status(200).json({
-              error:false,
-              message:"L'utilisateur a été modifié avec succès"
-          });
-      }catch(err){
-          res.send({status: 500, message: "err"})
-      }
-  }else{
-      res.send({status: 400, message: "Vous pouvez seulement modifier votre profile!"});
-  }
+  getAllUsers: async (req, res) => {
+    try{Date.now()
+        await User.find({}, (err, data)=>{
+            if(err) res.status(400).json("Erreur de chargement");
+            res.status(200).json(data)
+        });
+    }catch(err){
+        res.send({status: 500, message: "Data vide"})
+    }
+  },
+  getOneUser: async (req, res) => {
+    try{
   
+        const validation = jwt.verify(req.headers.token, process.env.jWT_KEY);
+        !validation && res.status(401).json({
+            error:true,
+            message:"Le token envoyé n'est pas valide"
+        })
+  
+        const user = await User.findById(req.params.id);
+        const { password, ...others} = user._doc;
+        // res.status(200).json(others);
+  
+        res.status(200).json({
+            error: false,
+            user:others
+        })
+    }catch(err){
+        res.send({status: 500, message: "Cette user n'existe pas"})
+    }
+  },
+  UpdateUser = async (req, res) => {
+      if(req.body.userId === req.params.id){
+          if(req.body.password){
+              const salt = await bcrypt.genSalt(10);
+              req.body.password = await bcrypt.hash(req.body.password, salt);
+          }
+          try{
+              const updateUser = await User.findByIdAndUpdate(req.params.id, {
+                  $set: req.body,
+              }, {new: true})
+              res.status(200).json({
+                  error:false,
+                  message:"L'utilisateur a été modifié avec succès"
+              });
+          }catch(err){
+              res.send({status: 500, message: "err"})
+          }
+      }else{
+          res.send({status: 400, message: "Vous pouvez seulement modifier votre profile!"});
+      }
+    
 }
+
+
+
+// exports.getAllUsers = async (req, res) => {
+//   try{Date.now()
+//       await User.find({}, (err, data)=>{
+//           if(err) res.status(400).json("Erreur de chargement");
+//           res.status(200).json(data)
+//       });
+//   }catch(err){
+//       res.send({status: 500, message: "Data vide"})
+//   }
+// }
+
+// exports.getOneUser = async (req, res) => {
+//   try{
+
+//       const validation = jwt.verify(req.headers.token, process.env.jWT_KEY);
+//       !validation && res.status(401).json({
+//           error:true,
+//           message:"Le token envoyé n'est pas valide"
+//       })
+
+//       const user = await User.findById(req.params.id);
+//       const { password, ...others} = user._doc;
+//       // res.status(200).json(others);
+
+//       res.status(200).json({
+//           error: false,
+//           user:others
+//       })
+//   }catch(err){
+//       res.send({status: 500, message: "Cette user n'existe pas"})
+//   }
+}
+
+// exports.UpdateUser = async (req, res) => {
+//   if(req.body.userId === req.params.id){
+//       if(req.body.password){
+//           const salt = await bcrypt.genSalt(10);
+//           req.body.password = await bcrypt.hash(req.body.password, salt);
+//       }
+//       try{
+//           const updateUser = await User.findByIdAndUpdate(req.params.id, {
+//               $set: req.body,
+//           }, {new: true})
+//           res.status(200).json({
+//               error:false,
+//               message:"L'utilisateur a été modifié avec succès"
+//           });
+//       }catch(err){
+//           res.send({status: 500, message: "err"})
+//       }
+//   }else{
+//       res.send({status: 400, message: "Vous pouvez seulement modifier votre profile!"});
+//   }
+  
+// }
