@@ -18,7 +18,7 @@ const UserSchema = new Schema({
         required: true,
         unique:true
     },
-    date_nassaince: {
+    datenassaince: {
         type: String,
         required:false,
         unique:true
