@@ -125,7 +125,7 @@ module.exports = {
         res.send({status: 500, message: "Cette user n'existe pas"})
     }
   },
-  UpdateUser = async (req, res) => {
+  UpdateUser: async (req, res) => {
       if(req.body.userId === req.params.id){
           if(req.body.password){
               const salt = await bcrypt.genSalt(10);
