@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }))
 // });
 
 app.get('/',function(req,res){
-  res.sendFile(__dirname + './views/assets/index.html');
+  res.sendFile(__dirname + '/index.html');
 
 });
 
