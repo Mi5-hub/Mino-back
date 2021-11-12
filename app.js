@@ -18,10 +18,9 @@ app.use(express.urlencoded({ extended: true }))
 
 
 
-app.get('/',function(req,res){
-  res.sendFile(__dirname + '/index.html');
-
-});
+app.get('/'),function(req,res){
+  res.sendFile(__dirname + '/index.html')
+}
 
 app.use('/users', AuthRoute)
 
